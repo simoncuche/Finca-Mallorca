@@ -2,7 +2,7 @@
 
 Ein kleines First-Person-Spiel im Browser: ein begehbares 3D-Modell der Finca,
 nachgebaut nach Fotos (Tor mit Bögen, Zypressenallee, Steinhof, Haupthaus mit
-Außentreppe, Carport, Pool mit Rasen, Grillhaus, Spielpavillon).
+Außentreppe, Carport, Wintergarten, Pool mit Deck, Poolhaus, Spielpavillon).
 
 ## Starten
 
@@ -21,7 +21,7 @@ sonst ist alles in der Datei enthalten.
 
 ## Spielziel
 
-Alle acht Orte der Finca entdecken. Die Minikarte oben rechts zeigt die
+Alle neun Orte der Finca entdecken. Die Minikarte oben rechts zeigt die
 Anlage, entdeckte Orte leuchten gelb.
 
 ## Aufbau
