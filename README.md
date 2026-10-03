@@ -21,13 +21,20 @@ sonst ist alles in der Datei enthalten.
 
 ## Spielziel
 
-Alle neun Orte der Finca entdecken. Die Minikarte oben rechts zeigt die
+Alle elf Orte der Finca entdecken. Die Minikarte oben rechts zeigt die
 Anlage, entdeckte Orte leuchten gelb.
 
 ## Aufbau
 
 Alles ist prozedural aus Grundkörpern gebaut (keine externen Modelle oder
-Texturen). Die Anlage liegt in einem Koordinatensystem in Metern:
-Tor bei z = 58, Allee entlang x = 0 nach Norden, Hof um den Ursprung,
-Haus im Nordosten, Pool und Rasen im Osten, Spielpavillon im Nordosten
-hinter dem Haus.
+Texturen). Die Anordnung folgt dem Luftbild (Norden oben, etwa 10 Pixel pro
+Meter). Koordinaten in Metern, x nach Osten, z nach Süden, Ursprung im Hof:
+
+- Tor und Zypressenallee kommen von Osten und laufen nach Westsüdwesten in den
+  Hof. Der Hauskomplex (Haupthaus, Anbau mit Außentreppe, Natursteinflügel,
+  Carport, Wintergarten) ist um 21 Grad gedreht, die Fassade zeigt zum Hof.
+- Pool, Holzdeck und Poolhaus liegen nordwestlich hinter dem Haus.
+- Der Rundweg (rote Linie im Luftbild) führt vom Hof nach Westen, am Rasen
+  vorbei nach Norden, über die Wiese nach Osten und durch den Wald zum Tor.
+- Nördlich der Wiese liegt der Tennisplatz, südwestlich der Spielpavillon,
+  der Talblick geht nach Norden.
