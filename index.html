@@ -143,7 +143,7 @@ T.water=tex(256,(g,s)=>{g.fillStyle='#3d9fcb';g.fillRect(0,0,s,s);for(let k=0;k<
 T.wood=tex(256,(g,s)=>{g.fillStyle='#8a6a48';g.fillRect(0,0,s,s);for(let i=0;i<8;i++){g.fillStyle=`hsl(${R(26,34)},${R(30,45)}%,${R(36,50)}%)`;g.fillRect(0,i*32+1,s,30);}for(let k=0;k<400;k++){g.fillStyle='rgba(40,20,10,.15)';g.fillRect(R(0,s),R(0,s),R(6,30),1);}});
 T.hedge=tex(256,(g,s)=>{g.fillStyle='#2f5a2a';g.fillRect(0,0,s,s);for(let k=0;k<2500;k++){g.fillStyle=`hsl(${R(95,130)},${R(30,50)}%,${R(18,40)}%)`;g.beginPath();g.arc(R(0,s),R(0,s),R(2,6),0,7);g.fill();}});
 T.meadow=tex(256,(g,s)=>{g.fillStyle='#8f9a4e';g.fillRect(0,0,s,s);for(let k=0;k<6000;k++){g.strokeStyle=`hsl(${R(55,95)},${R(30,50)}%,${R(30,55)}%)`;g.lineWidth=1;const x=R(0,s),y=R(0,s);g.beginPath();g.moveTo(x,y);g.lineTo(x+R(-2,2),y-R(3,9));g.stroke();}});
-T.court=tex(512,(g,s)=>{g.fillStyle='#7f8a96';g.fillRect(0,0,s,s);g.fillStyle='#6f8fa6';const px=s/19,pz=s/36;g.fillRect(px*4,pz*6,px*11,pz*24);g.strokeStyle='#f4f4f4';g.lineWidth=3;g.strokeRect(px*4,pz*6,px*11,pz*24);g.strokeRect(px*5.4,pz*6,px*8.2,pz*24);g.beginPath();g.moveTo(px*4,s/2);g.lineTo(px*15,s/2);g.moveTo(px*5.4,pz*12.4);g.lineTo(px*13.6,pz*12.4);g.moveTo(px*5.4,pz*23.6);g.lineTo(px*13.6,pz*23.6);g.moveTo(s/2,pz*12.4);g.lineTo(s/2,pz*23.6);g.stroke();});
+T.court=tex(512,(g,s)=>{g.fillStyle='#4a78b0';g.fillRect(0,0,s,s);g.fillStyle='#86bcc6';const px=s/19,pz=s/36;g.fillRect(px*4,pz*6,px*11,pz*24);g.strokeStyle='#f4f4f4';g.lineWidth=3;g.strokeRect(px*4,pz*6,px*11,pz*24);g.strokeRect(px*5.4,pz*6,px*8.2,pz*24);g.beginPath();g.moveTo(px*4,s/2);g.lineTo(px*15,s/2);g.moveTo(px*5.4,pz*12.4);g.lineTo(px*13.6,pz*12.4);g.moveTo(px*5.4,pz*23.6);g.lineTo(px*13.6,pz*23.6);g.moveTo(s/2,pz*12.4);g.lineTo(s/2,pz*23.6);g.stroke();});
 T.fence=tex(128,(g,s)=>{g.clearRect(0,0,s,s);g.strokeStyle='#2f8a4a';g.lineWidth=2;for(let i=0;i<=s;i+=16){g.beginPath();g.moveTo(i,0);g.lineTo(i,s);g.moveTo(0,i);g.lineTo(s,i);g.stroke();}});
 
 function mat(t,rx,ry,o){const tt=t.clone();tt.needsUpdate=true;tt.repeat.set(rx,ry);return new THREE.MeshStandardMaterial(Object.assign({map:tt,roughness:.92,metalness:0},o||{}));}
@@ -154,7 +154,7 @@ const M={
   iron:col(0x263129,{roughness:.55,metalness:.6}),white:col(0xf0efe9),dark:col(0x3a2c22),shutter:col(0x4a3426),glass:col(0x1c2a33,{roughness:.2,metalness:.5}),
   terracotta:col(0xb9693f),cream:col(0xe8dcc2),magenta:col(0xd0307a),pink:col(0xe88aa6),agave:col(0x7fa08c),rock:col(0xb7b0a0),
   blue:col(0x2b5fa8),red:col(0xb8231f),green:col(0x2c6b3a),black:col(0x1a1a1a),chrome:col(0xcfd3d6,{metalness:.7,roughness:.3}),
-  lightstone:col(0xd6ccb4),bronze:col(0x6e5a3a,{metalness:.4,roughness:.5}),tuft:col(0xa29a66),straw:col(0xc9b98a),pampas:col(0xa8a66c),
+  lightstone:col(0xd6ccb4),bronze:col(0x6e5a3a,{metalness:.4,roughness:.5}),tuft:col(0xa29a66),ball:col(0xd8e84a),navy:col(0x2a3f7a),straw:col(0xc9b98a),pampas:col(0xa8a66c),
   lounge:col(0x9fc4d6,{transparent:true,opacity:.32,roughness:.1,metalness:.3,side:THREE.DoubleSide}),
 };
 M.plaster=mat(T.plaster,2,2);M.stone=mat(T.stone,1,1);M.tile=mat(T.tile,1,1);M.hedge=mat(T.hedge,2,2);M.wood=mat(T.wood,1,1);
@@ -448,16 +448,33 @@ for(let i=0;i<50;i++)tuft(R(-58,-6),R(-66,-40),R(.7,1.4));
 for(let i=0;i<10;i++)rock(R(-58,-6),R(-66,-40),R(.3,.6));
 wallRun([[-58,-38],[-50,-39.5],[-48,-41]],.8,.6,M.stone,0,false);
 
-// ================= TENNIS COURT (north, downhill) =================
+// ================= TENNIS COURT (north, downhill; sunk behind a green retaining wall) =================
 (function(){const tc=new THREE.Group();enter(tc,0.36,-31,-96);
   plane(19,36,mat(T.court,1,1),0,0,.04);
-  const net=bx(11,1.0,.04,M.white,0,0,0);bx(.08,1.1,.08,M.dark,-5.6,0,0);bx(.08,1.1,.08,M.dark,5.6,0,0);
-  const fence=(x1,z1,x2,z2)=>{const l=Math.hypot(x2-x1,z2-z1);bx(.05,3.5,l,M.fence,(x1+x2)/2,(z1+z2)/2,0,Math.atan2(x2-x1,z2-z1));segBlock([x1,z1],[x2,z2],.1);};
-  fence(-9.5,-18,9.5,-18);fence(-9.5,-18,-9.5,18);fence(9.5,-18,9.5,18);fence(-9.5,18,-2,18);fence(2,18,9.5,18);
+  bx(11,1.0,.04,M.white,0,0,0);bx(.08,1.1,.08,M.dark,-5.6,0,0);bx(.08,1.1,.08,M.dark,5.6,0,0);
+  for(let i=0;i<14;i++)sph(.07,M.ball,R(-9,9),.07,R(-17,17));
+  const green=col(0x3f7a45);
+  const wall=(x1,z1,x2,z2,h)=>{const l=Math.hypot(x2-x1,z2-z1);bx(.3,h,l,green,(x1+x2)/2,(z1+z2)/2,0,Math.atan2(x2-x1,z2-z1));segBlock([x1,z1],[x2,z2],.3);};
+  const fence=(x1,z1,x2,z2,y0)=>{const l=Math.hypot(x2-x1,z2-z1);bx(.05,3.5-(y0||0),l,M.fence,(x1+x2)/2,(z1+z2)/2,y0||0,Math.atan2(x2-x1,z2-z1));if(!y0)segBlock([x1,z1],[x2,z2],.1);};
+  // green wall on the long sides and the house end, fence above it; open fence at the far end
+  wall(-9.5,-18,-9.5,18,1.3);wall(9.5,-18,9.5,18,1.3);wall(-9.5,18,-2,18,1.3);wall(2,18,9.5,18,1.3);
+  fence(-9.5,-18,-9.5,18,1.3);fence(9.5,-18,9.5,18,1.3);fence(-9.5,18,-2,18,1.3);fence(2,18,9.5,18,1.3);fence(-9.5,-18,9.5,-18);
   for(let i=0;i<=6;i++){bx(.1,3.5,.1,M.dark,-9.5+i*19/6,-18,0);bx(.1,3.5,.1,M.dark,-9.5+i*19/6,18,0);}for(let i=1;i<12;i++){bx(.1,3.5,.1,M.dark,-9.5,-18+i*3,0);bx(.1,3.5,.1,M.dark,9.5,-18+i*3,0);}
   bx(1.4,.45,.5,M.dark,-8.5,2,0);bx(1.4,.45,.5,M.dark,-8.5,-2,0);
+  // oleander hedge outside the walls
+  for(let z=-16;z<=16;z+=4){bush(-11.5,z,1.5,M.leaf,M.pink);bush(11.5,z+2,1.5,M.leaf,M.pink);}
+  for(let x=-8;x<=8;x+=4)bush(x,20.5,1.5,M.leaf,M.pink);
+  // stone pavilion on a raised platform at the entrance corner, steps down to the court
+  const PX=-14.5,PZ=14;
+  bx(7,.6,6,M.stone,PX,PZ,0);plane(6.8,5.8,mat(T.flag,2.3,2),PX,PZ,.62);
+  for(let i=0;i<3;i++)bx(1.6,.2*(i+1),.4,M.lightstone,-9.4-.5-i*0.0,PZ+2-i*.45,0);
+  for(const p of[[PX-3,PZ-2.6],[PX+3,PZ-2.6],[PX-3,PZ+2.6],[PX+3,PZ+2.6]]){bx(.7,3.0,.7,M.stone,p[0],p[1],.6);block(p[0]-.4,p[1]-.4,p[0]+.4,p[1]+.4);}
+  beams(7,6,PX,PZ,3.65,0,6);roof(7,6,1.1,.6,PX,PZ,3.7,0,M.tile,M.stone);
+  bx(1.2,.05,1.2,M.dark,PX,PZ,1.3);cyl(.04,.04,.7,M.dark,PX,PZ,.6,6);block(PX-.6,PZ-.6,PX+.6,PZ+.6);
+  for(const p of[[PX-1.4,PZ],[PX+1.4,PZ],[PX,PZ-1.4],[PX,PZ+1.4]]){bx(.6,.08,.6,M.navy,p[0],p[1],1.05);bx(.6,.6,.08,M.navy,p[0],p[1]+(p[1]>PZ?.3:-.3),1.05);for(const q of[[-.25,-.25],[.25,-.25],[-.25,.25],[.25,.25]])cyl(.015,.015,.45,M.dark,p[0]+q[0],p[1]+q[1],.6,4);}
+  bx(1.5,.5,.8,M.lightstone,PX,PZ+3.8,0);palm(PX-4.5,PZ-1,13,2.6,.42);palm(PX-2,PZ-5,15,2.7,.42);palm(PX+3.5,PZ+4.5,11,2.4,.38);
   leave();})();
-for(const p of[[-45,-82],[-18,-90],[-44,-110],[-14,-108],[-30,-118],[-52,-96]])pine(p[0],p[1],R(8,12),R(3.5,4.5));
+for(const p of[[-46,-84],[-44,-112],[-14,-110],[-30,-120],[-54,-98],[-10,-84]])pine(p[0],p[1],R(8,12),R(3.5,4.5));
 
 // ================= FOREST =================
 const keepClear=[[-22,-42,58,14],[-64,-44,-8,-8],[-66,-74,2,-37],[-64,-6,-36,18],[-54,-120,-8,-72]];
@@ -477,7 +494,7 @@ const PLACES=PL_COMPOUND.concat([
   {id:'pool',name:'Pool und Deck',x:-27.5,z:-21,r:7},
   {id:'poolhaus',name:'Poolhaus',x:-39,z:-20,r:5},
   {id:'wiese',name:'Wiese mit Talblick',x:-32,z:-54,r:10},
-  {id:'tennis',name:'Tennisplatz',x:-31,z:-96,r:13},
+  {id:'tennis',name:'Tennisplatz',x:-31,z:-96,r:14},
   {id:'spiel',name:'Spielpavillon',x:-48,z:4,r:7},
 ]);
 
